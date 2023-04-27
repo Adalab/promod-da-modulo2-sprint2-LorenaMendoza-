@@ -1,8 +1,8 @@
 #### REPOSITORIO MODULO 2 - SPRINT 2 DE LORENA MENDOZA
 
-En este repositorio se encuentra la evalución realizada por la alumna Lorena Mendoza del Bootcamps de Análisis de datos
+En este repositorio se encuentra la evalución realizada por la alumna Lorena Mendoza del Bootcamp de Análisis de datos
 .
-- En él hay unc carpeta de 'notebooks', donde se encuentra el fichero llamado *evaluacion.ipynb* donde se encuentran resueltos los diferentes ejercicios planteados.
+- En él hay una carpeta de 'notebooks', donde se encuentra el fichero llamado *evaluacion.ipynb* donde están resueltos los diferentes ejercicios planteados.
 
 - Del mismo modo, hay otra carpeta en la que se encuentra un documento de extensión sql, *script_creacion_bbdd* donde se encuentra el código empleado en la creación de la BBDD. 
   

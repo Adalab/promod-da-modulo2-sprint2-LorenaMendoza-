@@ -57,6 +57,62 @@ class Extraccion:
         return df_unido
     
 
+class Limpieza:
+    """Clase que tiene como objetivo la limpieza y procesado
+     de algunos cambios aplicados al dataframe"""
+    def __init__(self):
+
+        self = self
+    
+    def cambiar_guion(dataframe):
+        """Método que permite sustituir un guion intermedio "-" por uno bajo "_. Recibe un parámetro,
+    que es un dataframe."""
+        nuevas_col = {col:col.replace("-", "_") for col in df.columns}
+        dataframe.rename(columns = nuevas_col,inplace = True)
+        return dataframe
+    
+    def reemplazo_none(dataframe):
+        """Método que permite reemplazar los elementos None por Nan.Recibe como parámetro el dataframe
+    sobre el que se quieren aplicar los cambios."""
+        dataframe = dataframe.fillna(value = np.nan, axis=1)
+        return dataframe 
+    
+    def reemplazo_desconocido(dataframe, columna):
+        """Método que permite sustituir los Nan por el string "Unknown". Recibe dos parámetros: 
+    el dataframe y la columna sobre la que se quiere realizar el cambio. """
+        dataframe[columna].fillna("Unkwnon", inplace=True)
+        return dataframe
+    
+    def cambiar_estado(dataframe, columna, diccionario):
+        """Método que tiene como objetivo reemplazar los valores únicos de una columna. Recibe tres parámetros:
+    el dataframe, la columna sobre la que se quieren cambiar los valores y el diccionario con los nuevos valores asignados."""
+        dataframe[columna]=dataframe[columna].map(diccionario)
+        dataframe[columna].replace(np.nan, "Unkwnon", inplace=True)
+        return dataframe
+    
+    def obtener_coordenadas(lista_unicos_provincia):
+        """Método que permite obtener las coordenadas de latitud y longitud de cualquier lugar que se le pase.
+    Recibe un parámetro, que es una lista con lugares, sitios, localizaciones."""
+        lista_coordenadas = []
+        geolocator = Nominatim(user_agent="mi_usuario")
+        
+        for provincia in lista_unicos_provincia:
+            if provincia == "Unkwnon":
+                lista_coordenadas.append(("Unkwnon", "Unkwnon"))
+            else:
+                ubicacion = geolocator.geocode(provincia)
+                coordenadas = (ubicacion.latitude, ubicacion.longitude)
+                lista_coordenadas.append(coordenadas)
+        return lista_coordenadas
+    
+    def mergear_tablas(dataframe1, dataframe2, columna):
+        """Método que sirve para mergear tablas que tienen alguna columna en común. Recibe tres parámetros: los
+    dataframes que se quieren unir y la columna por la que se quiere realizar la unión. Este último parámetro es
+    de tipo string."""
+        df_final = dataframe1.merge(dataframe2, on = columna, how= 'inner' )
+        return df_final
+
+
     class Bbdd():
 
         """Clase que cuenta con métodos enfocados en la creación de BBDD, creación de tablas e 
